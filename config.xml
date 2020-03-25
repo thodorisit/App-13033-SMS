@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.aitisiegkrisis.thit" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Αίτηση Έγκρισης Μετακίνησης</name>
+    <description>
+        Εύκολη και γρήγορη συμπλήρωση sms έντυπου μετακίνησης!
+    </description>
+    <author email="thodoris@itsios.eu" href="https://itsios.eu">
+        Thodoris Itsios
+    </author>
+    <content src="index.html" />
+    <preference name="phonegap-version" value="cli-9.0.0" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <icon src="www/res/mipmap-mdpi/launcher.png" density="mdpi" />
+        <icon src="www/res/mipmap-hdpi/launcher.png" density="hdpi" />
+        <icon src="www/res/mipmap-xhdpi/launcher.png" density="xhdpi" />
+        <icon src="www/res/mipmap-xxhdpi/launcher.png" density="xxhdpi" />
+        <icon src="www/res/mipmap-xxxhdpi/launcher.png" density="xxxhdpi" />
+    </platform>
+</widget>

@@ -1,0 +1,110 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    outline:0 !important;
+}
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    background-color:#eeeeee;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    font-family: Arial;
+    font-size:12px;
+    word-wrap: break-word;
+}
+
+.form {
+    position: relative;
+    display: block;
+    width:100%;
+    padding:20px 0px;
+    text-align: center;
+}
+
+.input-field, .submit {
+    position: relative;
+    display: block;
+    width: 80%;
+    margin:10px 5%;
+    padding:20px 5%;
+    font-size:16px;
+    border:0;
+    background:#FFFFFF;
+    color:#0A0A0A;
+}
+
+.input-select {
+    position: relative;
+    display: block;
+    width: 90%;
+    margin:10px 5%;
+    padding:20px 0px;
+    font-size:16px;
+    border:0;
+    background:#FFFFFF;
+    color:#0A0A0A;
+}
+
+.submit {
+    margin-top:30px;
+    background:#1089ff;
+    color:#FFFFFF;
+}
+
+.label {
+    position: relative;
+    display: block;
+    font-size:16px;
+    font-weight:normal;
+    text-align:left;
+    width: 80%;
+    margin:20px 5% 10px 5%;
+}
+
+.logo {
+    position: relative;
+    display: block;
+    width:70%;
+    max-width:200px;
+    margin:auto;
+}
+
+.disclaimer {
+    position: relative;
+    display: block;
+    font-size:13px;
+    font-weight:normal;
+    text-align:left;
+    width: 90%;
+    margin:30px 5%;
+}
+
+.credits {
+    position: relative;
+    display: block;
+    font-size:13px;
+    font-weight:normal;
+    text-align:left;
+    width: 90%;
+    margin:10px 5%;
+}
+
+.hidden-form-href-send-sms {
+    display: none;
+}
+
+.shadow-shorter {
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04), 
+                0 2px 2px rgba(0,0,0,0.04), 
+                0 4px 4px rgba(0,0,0,0.04), 
+                0 6px 8px rgba(0,0,0,0.04),
+                0 8px 16px rgba(0,0,0,0.04);
+}
+.shadow-longer {
+    box-shadow: 0 2px 1px rgba(0,0,0,0.04), 
+                0 4px 2px rgba(0,0,0,0.04), 
+                0 8px 4px rgba(0,0,0,0.04), 
+                0 16px 8px rgba(0,0,0,0.04),
+                0 32px 16px rgba(0,0,0,0.04);
+}

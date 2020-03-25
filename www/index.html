@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title></title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="form">
+                <img class="logo" src="img/logo.png"/>
+                <div class="label">Το ονοματεπώνυμό σας</div>
+                <input id="fullname" class="input-field shadow-shorter" placeholder="Το ονοματεπώνυμό σας"/>
+                <div class="label">Η διεύθυνση κατοικίας σας</div>
+                <input id="address" class="input-field shadow-shorter" placeholder="Η διεύθυνση κατοικίας σας"/>
+                <div class="label">Λόγος μετακίνησης</div>
+                <select id="type" class="input-select shadow-shorter">
+                    <option value="1">1. Μετάβαση σε φαρμακείο ή γιατρό.</option>
+                    <option value="2">2. Μετάβαση για προμήθειες αγαθών πρώτης ανάγκης.</option>
+                    <option value="3">3. Μετάβαση στην τράπεζα.</option>
+                    <option value="4">4. Μετάβαση για παροχή βοήθειας σε ανθρώπους που βρίσκονται σε ανάγκη.</option>
+                    <option value="5">5. Μετάβαση σε τελετή ή διαζευγμένων/σε διάσταση γονέων σε τέκνα.</option>
+                    <option value="6">6. Μετάβαση με κατοικίδιο ζώο ή για σωματική άσκηση σε εξωτερικό χώρο. </option>
+                </select>
+                <div onclick="message.send()" class="submit shadow-longer">Αποστολή SMS στο 13033</div>
+
+                <a href="" id="hidden_form_href_send_sms" class="hidden-form-href-send-sms" type="text"></a>
+
+                <div class="disclaimer">
+                    Σημαντική σημείωση:<br/>Η εφαρμογή κρατάει ιστορικό δεδομένων αποκλειστικά και μόνο τοπικά στη συσκευή σας.
+                    Πιέζοντας το πλήκτρο αποστολής, ανοίγει η εφαμοργή αποστολής SMS της συσκευή σας με προσυμπληρωμένα όλα τα πεδία.
+                </div>
+                <div class="credits">
+                    Crafted by Thodoris Itsios
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var message = {
+                send : function () {
+                    var fullname = document.getElementById('fullname').value;
+                    var address = document.getElementById('address').value;
+                    var type = document.getElementById('type').value;
+                    var _continue = true;
+                    if (fullname == "") {
+                        window.alert("Η συμπλήρωση του ονοματεπώνυμού σας είναι απαραίτητη!");
+                        _continue = false;
+                    }
+                    if (address == "") {
+                        window.alert("Η συμπλήρωση της διεύθυνσης κατοικίας σας είναι απαραίτητη!");
+                        _continue = false;
+                    }
+                    if (_continue) {
+                        var result = type + ' ' + fullname + ' ' + address;
+                        storage.setFullname(fullname);
+                        storage.setAddress(address);
+                        document.getElementById("hidden_form_href_send_sms").href = "sms:13033?body="+result;
+                        document.getElementById("hidden_form_href_send_sms").click();
+                    }
+                }
+            };
+
+            var storage = {
+                setFullname : function(value) {
+                    window.localStorage.setItem("fullname", value);
+                },
+                setAddress : function(value) {
+                    window.localStorage.setItem("address", value);
+                },
+                fillForm : function() {
+                    var fullname = window.localStorage.getItem("fullname");
+                    var address = window.localStorage.getItem("address");
+                    if (fullname != "" && fullname != null) {
+                        document.getElementById('fullname').value = fullname;
+                    }
+                    if (address != "" && address != null) {
+                        document.getElementById('address').value = address;
+                    }
+                }
+            };
+
+            window.onload = function() {
+                storage.fillForm();
+            };
+        </script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
