@@ -9,6 +9,18 @@
         <title></title>
     </head>
     <body>
+        <div id="edit_information_modal" class="edit-information-container">
+            <div onClick="editInformation.toggle()" class="edit-information-container-close">x</div>
+            <div class="edit-information-form">
+                <div class="title">Επεξεργασία Αποθηκευμένων Στοιχείων</div>
+                <div class="label">Το ονοματεπώνυμό σας</div>
+                <input id="edit_information_modal__fullname" class="input-field shadow-shorter" placeholder="Το ονοματεπώνυμό σας"/>
+                <div class="label">Η διεύθυνση κατοικίας σας</div>
+                <input id="edit_information_modal__address" class="input-field shadow-shorter" placeholder="Η διεύθυνση κατοικίας σας"/>
+                <div onclick="editInformation.save()" class="submit shadow-longer">Αποθήκευση</div>
+            </div>
+        </div>
+
         <div class="container">
             <div class="form">
                 <img class="logo" src="img/logo.png"/>
@@ -28,6 +40,10 @@
                 <div onclick="message.send()" class="submit shadow-longer">Αποστολή SMS στο 13033</div>
 
                 <a href="" id="hidden_form_href_send_sms" class="hidden-form-href-send-sms" type="text"></a>
+
+                <div onClick="editInformation.toggle()" class="edit-information-button shadow-shorter">
+                    Επεξεργασία στοιχείων
+                </div>
 
                 <div class="disclaimer">
                     Σημαντική σημείωση:<br/>Η εφαρμογή κρατάει ιστορικό δεδομένων αποκλειστικά και μόνο τοπικά στη συσκευή σας.
@@ -71,13 +87,29 @@
                 setAddress : function(value) {
                     window.localStorage.setItem("address", value);
                 },
-                fillForm : function() {
+                getFullname : function() {
                     var fullname = window.localStorage.getItem("fullname");
-                    var address = window.localStorage.getItem("address");
                     if (fullname != "" && fullname != null) {
+                        return fullname;
+                    } else {
+                        return null;
+                    }
+                },
+                getAddress : function() {
+                    var address = window.localStorage.getItem("address");
+                    if (address != "" && address != null) {
+                        return address;
+                    } else {
+                        return null;
+                    }
+                },
+                fillForm : function() {
+                    var fullname = storage.getFullname();
+                    var address = storage.getAddress();
+                    if (fullname) {
                         document.getElementById('fullname').value = fullname;
                     }
-                    if (address != "" && address != null) {
+                    if (address) {
                         document.getElementById('address').value = address;
                     }
                 }
@@ -85,6 +117,36 @@
 
             window.onload = function() {
                 storage.fillForm();
+            };
+
+            var editInformation = {
+                toggle : function() {
+                    if (document.getElementById('edit_information_modal').classList.contains('open')) {
+                        document.getElementById('edit_information_modal').classList.remove('open');
+                    } else {
+                        var fullname = storage.getFullname();
+                        var address = storage.getAddress();
+                        if (fullname) {
+                            document.getElementById('edit_information_modal__fullname').value = fullname;
+                        }
+                        if (address) {
+                            document.getElementById('edit_information_modal__address').value = address;
+                        }
+                        document.getElementById('edit_information_modal').classList.add('open');
+                    }
+                },
+                save : function() {
+                    var form_fullname = document.getElementById('edit_information_modal__fullname').value;
+                    var form_address = document.getElementById('edit_information_modal__address').value;
+                    if (form_fullname != "" && form_fullname != null) {
+                        storage.setFullname(form_fullname);
+                    }
+                    if (form_address != "" && form_address != null) {
+                        storage.setAddress(form_address);
+                    }
+                    storage.fillForm();
+                    editInformation.toggle();
+                }
             };
         </script>
         <script type="text/javascript" src="cordova.js"></script>
